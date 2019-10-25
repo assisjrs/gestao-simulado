@@ -11,4 +11,7 @@ Para executar a aplicação local certifique-se de ter o java 8 instalado corret
 $ ./gradelw build bootRun
 
 Você também pode executar via Docker:
+$ ./gradelw clean build jar
 
+$ docker build -t gestao-sumulado:latest .
+$ docker run -d -p 8080:8080/tcp --name simulado gestao-sumulado
