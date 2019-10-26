@@ -1,4 +1,4 @@
-package work.assisjrs.simulado.simuladoapi;
+package work.assisjrs.simulado;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
