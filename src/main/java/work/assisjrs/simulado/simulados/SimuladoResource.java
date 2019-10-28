@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import static java.util.Optional.ofNullable;
-
 @RestController
 @RequestMapping("/simulados")
 public class SimuladoResource {
@@ -25,8 +23,9 @@ public class SimuladoResource {
     public ResponseEntity<?> get() {
         final List<SimuladoResponse> simulados = modelMapper.map(service.all(), new TypeToken<List<SimuladoResponse>>() {}.getType());
 
-        return ofNullable(simulados)
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.noContent().build());
+        if(simulados.isEmpty())
+            return ResponseEntity.noContent().build();
+
+        return ResponseEntity.ok(simulados);
     }
 }
