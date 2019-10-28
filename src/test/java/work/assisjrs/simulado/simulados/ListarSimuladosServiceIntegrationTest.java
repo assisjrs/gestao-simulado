@@ -9,7 +9,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-public class ListarSimuladosServiceTest {
+public class ListarSimuladosServiceIntegrationTest {
     @Autowired
     private SimuladoService service;
 
