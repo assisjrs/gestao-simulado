@@ -49,9 +49,9 @@ public class ListarSimuladosContractTest {
     }
 
     @Test
-    public void deve_existir_o_campo_nome() {
+    public void deve_existir_o_campo_referencia() {
         get(url(port,"/simulados"))
                 .then()
-                .body("[0]", hasKey("nome"));
+                .body("[0]", hasKey("referencia"));
     }
 }

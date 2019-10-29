@@ -17,5 +17,5 @@ public class Simulado {
     @NotBlank
     @Column(unique = true)
     @Size(min = 1, max = 255)
-    private String nome;
+    private String referencia;
 }
