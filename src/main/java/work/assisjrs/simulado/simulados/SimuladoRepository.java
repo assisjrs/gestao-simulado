@@ -5,4 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SimuladoRepository extends JpaRepository<Simulado, Long> {
+    Simulado findByReferencia(String referencia);
 }

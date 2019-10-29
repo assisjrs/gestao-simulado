@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class SimuladoResponse {
     private Long id;
-    private String nome;
+    private String referencia;
 }

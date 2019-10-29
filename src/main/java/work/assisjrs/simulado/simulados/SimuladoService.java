@@ -14,9 +14,12 @@ public class SimuladoService {
     private SimuladoRepository repository;
 
     public List<Simulado> all() {
-        final List<Simulado> simulados = repository.findAll();
-
-        return ofNullable(simulados)
+        return ofNullable(repository.findAll())
                 .orElse(emptyList());
+    }
+
+    public Simulado findByReferencia(final String referencia) {
+        return ofNullable(repository.findByReferencia(referencia))
+                .orElseThrow(() -> new SimuladoNaoEncontradoException("Nenhum simulado encontrado com a referência " + referencia));
     }
 }
