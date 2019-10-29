@@ -1,16 +1,27 @@
 package work.assisjrs.simulado.provas;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import work.assisjrs.simulado.simulados.Simulado;
+import work.assisjrs.simulado.simulados.SimuladoService;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static java.util.Collections.emptyList;
+import static java.util.Optional.ofNullable;
 
 @Service
 public class ProvaService {
-    public List<Prova> findBySimulado(final String referenciaSimulado) {
-        final List<Prova> provas = new ArrayList<>();
+    @Autowired
+    private ProvaRepository repository;
 
-        provas.add(new Prova());
-        return provas;
+    @Autowired
+    private SimuladoService simuladoService;
+
+    public List<Prova> findBySimulado(final String referenciaSimulado) {
+        final Simulado simulado = simuladoService.findByReferencia(referenciaSimulado);
+
+        return ofNullable(repository.findBySimulados(simulado))
+                .orElse(emptyList());
     }
 }

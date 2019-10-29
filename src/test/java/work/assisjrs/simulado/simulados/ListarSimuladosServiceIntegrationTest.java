@@ -33,4 +33,9 @@ public class ListarSimuladosServiceIntegrationTest {
 
         assertThat(simulados).isEmpty();
     }
+
+    @Test
+    public void deve_retornar_o_simulado_pela_referencia_informada() {
+        assertThat(service.findByReferencia("MED-2018-FOR")).isNotNull();
+    }
 }
