@@ -9,6 +9,7 @@ import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
 import static com.jayway.restassured.RestAssured.get;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasKey;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
@@ -55,5 +56,12 @@ public class ListarProvasPorSimuladosContractTest {
         get(url(port,"/simulados/MED-2018-FOR/provas/"))
                 .then()
                 .body("[0]", hasKey("simulado"));
+    }
+
+    @Test
+    public void o_campo_simulado_deve_trazer_a_referencia_do_simulado() {
+        get(url(port,"/simulados/MED-2018-FOR/provas/"))
+                .then()
+                .body("[0].simulado", equalTo("MED-2018-FOR"));
     }
 }
