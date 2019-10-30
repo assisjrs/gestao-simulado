@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static work.assisjrs.simulado.questoes.Nivel.FACIL;
 
@@ -21,8 +20,6 @@ public class QuestaoResource {
 
     @GetMapping
     public ResponseEntity<?> get(@PathVariable final String referenciaSimulado, @PathVariable final String referenciaProva) {
-        final List<ProvaComQuestoesResponse> provasComQuestoes = new ArrayList<>();
-
         final ProvaComQuestoesResponse provaComQuestoesResponse = new ProvaComQuestoesResponse();
         provaComQuestoesResponse.setQuestoes(new ArrayList<>());
 
@@ -34,13 +31,12 @@ public class QuestaoResource {
         questaoResponse.setEscolhas(new ArrayList<>());
 
         final EscolhaResponse escolha = new EscolhaResponse();
+        escolha.setId(1L);
 
         questaoResponse.getEscolhas().add(escolha);
 
         provaComQuestoesResponse.getQuestoes().add(questaoResponse);
 
-        provasComQuestoes.add(provaComQuestoesResponse);
-
-        return ResponseEntity.ok(provasComQuestoes);
+        return ResponseEntity.ok(provaComQuestoesResponse);
     }
 }

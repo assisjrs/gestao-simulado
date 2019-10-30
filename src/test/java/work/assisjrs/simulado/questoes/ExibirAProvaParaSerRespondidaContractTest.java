@@ -36,69 +36,69 @@ public class ExibirAProvaParaSerRespondidaContractTest {
     public void deve_existir_o_campo_id() {
         get(url(port,"/simulados/MED-2018-FOR/provas/BIOLOGIA-2018"))
                 .then()
-                .body("[0]", hasKey("id"));
+                .body("$", hasKey("id"));
     }
 
     @Test
     public void deve_existir_o_campo_referencia() {
         get(url(port,"/simulados/MED-2018-FOR/provas/BIOLOGIA-2018"))
                 .then()
-                .body("[0]", hasKey("referencia"));
+                .body("$", hasKey("referencia"));
     }
 
     @Test
     public void deve_existir_o_campo_simulado() {
         get(url(port,"/simulados/MED-2018-FOR/provas/BIOLOGIA-2018"))
                 .then()
-                .body("[0]", hasKey("simulado"));
+                .body("$", hasKey("simulado"));
     }
 
     @Test
     public void deve_existir_a_lista_de_questoes() {
         get(url(port,"/simulados/MED-2018-FOR/provas/BIOLOGIA-2018"))
                 .then()
-                .body("[0]", hasKey("questoes"));
+                .body("$", hasKey("questoes"));
     }
 
     @Test
     public void para_as_questoes_deve_existir_o_id() {
         get(url(port,"/simulados/MED-2018-FOR/provas/BIOLOGIA-2018"))
                 .then()
-                .body("[0].questoes[0]", hasKey("id"));
+                .body("questoes[0]", hasKey("id"));
     }
 
     @Test
     public void para_as_questoes_deve_existir_o_nivel() {
         get(url(port,"/simulados/MED-2018-FOR/provas/BIOLOGIA-2018"))
                 .then()
-                .body("[0].questoes[0]", hasKey("nivel"));
+                .body("questoes[0]", hasKey("nivel"));
     }
 
     @Test
     public void para_as_questoes_deve_existir_a_texto() {
         get(url(port,"/simulados/MED-2018-FOR/provas/BIOLOGIA-2018"))
                 .then()
-                .body("[0].questoes[0]", hasKey("texto"));
+                .body("questoes[0]", hasKey("texto"));
     }
 
     @Test
     public void para_a_lista_de_escolhas() {
         get(url(port,"/simulados/MED-2018-FOR/provas/BIOLOGIA-2018"))
                 .then()
-                .body("[0].questoes[0]", hasKey("escolhas"));
+                .body("questoes[0]", hasKey("escolhas"));
     }
 
     @Test
     public void para_a_a_escolha_deve_existir_id() {
         get(url(port,"/simulados/MED-2018-FOR/provas/BIOLOGIA-2018"))
                 .then()
-                .body("[0].questoes[0].escolhas[0]", hasKey("id"));
+                .body("questoes[0].escolhas[0]", hasKey("id"));
     }
 
     @Test
     public void para_a_a_escolha_deve_existir_texto() {
         get(url(port,"/simulados/MED-2018-FOR/provas/BIOLOGIA-2018"))
                 .then()
-                .body("[0].questoes[0].escolhas[0]", hasKey("texto"));
+                .body("questoes[0].escolhas[0]", hasKey("texto"));
     }
 }
