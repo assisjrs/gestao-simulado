@@ -2,6 +2,7 @@ package work.assisjrs.simulado.provas;
 
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
+import com.github.springtestdbunit.annotation.DatabaseSetups;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,7 +19,10 @@ import static work.assisjrs.simulado.Helper.url;
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, DbUnitTestExecutionListener.class })
-@DatabaseSetup("/datasets/ListarProvasPorSimuladosContractTest.xml")
+@DatabaseSetups({
+        @DatabaseSetup("/datasets/clean_database.xml"),
+        @DatabaseSetup("/datasets/provas/ListarProvasPorSimuladosContractTest.xml")
+})
 public class ListarProvasPorSimuladosContractTest {
     @Value("${local.server.port}")
     private int port = 0;

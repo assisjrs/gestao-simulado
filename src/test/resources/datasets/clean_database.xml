@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
+    <PROVA_SIMULADOS/>
+
+    <QUESTAO/>
+    <PROVA/>
     <SIMULADO />
 </dataset>

@@ -1,8 +1,13 @@
-package work.assisjrs.simulado.provas;
+package work.assisjrs.simulado.questoes;
 
+import com.github.springtestdbunit.DbUnitTestExecutionListener;
+import com.github.springtestdbunit.annotation.DatabaseSetup;
+import com.github.springtestdbunit.annotation.DatabaseSetups;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestExecutionListeners;
+import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
 import static com.jayway.restassured.RestAssured.get;
 import static org.hamcrest.Matchers.hasKey;
@@ -11,6 +16,11 @@ import static org.springframework.http.HttpStatus.OK;
 import static work.assisjrs.simulado.Helper.url;
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
+@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, DbUnitTestExecutionListener.class })
+@DatabaseSetups({
+        @DatabaseSetup("/datasets/clean_database.xml"),
+        @DatabaseSetup("/datasets/questoes/ExibirAProvaParaSerRespondidaContractTest.xml")
+})
 public class ExibirAProvaParaSerRespondidaContractTest {
     @Value("${local.server.port}")
     private int port = 0;

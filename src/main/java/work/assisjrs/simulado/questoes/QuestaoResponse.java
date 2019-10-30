@@ -1,4 +1,4 @@
-package work.assisjrs.simulado.provas;
+package work.assisjrs.simulado.questoes;
 
 import lombok.Data;
 
