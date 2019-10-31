@@ -21,9 +21,9 @@ import static work.assisjrs.simulado.Helper.url;
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, DbUnitTestExecutionListener.class })
 @DatabaseSetups({
         @DatabaseSetup("/datasets/clean_database.xml"),
-        @DatabaseSetup("/datasets/provas/ListarProvasPorSimuladosContractTest.xml")
+        @DatabaseSetup("/datasets/provas/ListarProvasPorSimuladoContractTest.xml")
 })
-public class ListarProvasPorSimuladosContractTest {
+public class ListarProvasPorSimuladoContractTest {
     @Value("${local.server.port}")
     private int port = 0;
 
