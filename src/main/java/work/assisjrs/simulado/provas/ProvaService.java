@@ -24,4 +24,10 @@ public class ProvaService {
         return ofNullable(repository.findBySimulados(simulado))
                 .orElse(emptyList());
     }
+
+    public Prova findBySimuladoAndReferencia(final String referenciaSimulado, final String referenciaProva) {
+        final Simulado simulado = simuladoService.findByReferencia(referenciaSimulado);
+        return ofNullable(repository.findBySimuladosAndReferencia(simulado, referenciaProva))
+                .orElseThrow(() -> new ProvaNaoEncontradaException("Nenhuma prova com referencia " + referenciaProva + " foi encontrada para o simulado com a referência " + referenciaSimulado));
+    }
 }

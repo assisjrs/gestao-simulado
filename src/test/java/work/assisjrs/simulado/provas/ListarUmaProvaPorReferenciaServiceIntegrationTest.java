@@ -1,4 +1,4 @@
-package work.assisjrs.simulado.simulados;
+package work.assisjrs.simulado.provas;
 
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
@@ -9,37 +9,30 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, DbUnitTestExecutionListener.class })
 @DatabaseSetups({
         @DatabaseSetup("/datasets/clean_database.xml"),
-        @DatabaseSetup("/datasets/simulados/ListarSimuladosServiceIntegrationTest.xml")
+        @DatabaseSetup("/datasets/provas/ListarUmaProvaPorReferenciaServiceIntegrationTest.xml")
 })
-public class ListarSimuladosServiceIntegrationTest {
+public class ListarUmaProvaPorReferenciaServiceIntegrationTest {
     @Autowired
-    private SimuladoService service;
+    private ProvaService service;
 
     @Test
-    public void deve_listar_simulados() {
-        final List<Simulado> simulados = service.all();
+    public void deve_listar_provas_por_simulado_e_referencia() {
+        final Prova prova = service.findBySimuladoAndReferencia("MED-2018-FOR", "BIOLOGIA-2018");
 
-        assertThat(simulados).isNotEmpty();
+        assertThat(prova).isNotNull();
     }
 
     @Test
-    @DatabaseSetup("/datasets/clean_database.xml")
-    public void caso_nao_existam_simulados_retornar_uma_lista_vazia() {
-        final List<Simulado> simulados = service.all();
-
-        assertThat(simulados).isEmpty();
-    }
-
-    @Test
-    public void deve_retornar_o_simulado_pela_referencia_informada() {
-        assertThat(service.findByReferencia("MED-2018-FOR")).isNotNull();
+    public void deve_lancar_prova_nao_encontrada_caso_nao_exista_a_referencia_da_prova_naquele_simulado() {
+        assertThrows(ProvaNaoEncontradaException.class, () -> {
+            service.findBySimuladoAndReferencia("MED-2018-SP", "PORTUGUES-2018");
+        });
     }
 }

@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface ProvaRepository extends JpaRepository<Prova, Long> {
     List<Prova> findBySimulados(Simulado simulado);
+
+    Prova findBySimuladosAndReferencia(Simulado simulado, String referencia);
 }

@@ -2,6 +2,7 @@ package work.assisjrs.simulado.provas;
 
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
+import com.github.springtestdbunit.annotation.DatabaseSetups;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,7 +15,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, DbUnitTestExecutionListener.class })
-@DatabaseSetup("/datasets/ListarProvasPorSimuladoServiceIntegrationTest.xml")
+@DatabaseSetups({
+        @DatabaseSetup("/datasets/clean_database.xml"),
+        @DatabaseSetup("/datasets/provas/ListarProvasPorSimuladoServiceIntegrationTest.xml")
+})
 public class ListarProvasPorSimuladoServiceIntegrationTest {
     @Autowired
     private ProvaService service;
