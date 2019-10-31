@@ -5,5 +5,5 @@
 
     <PROVA_SIMULADOS prova_id="1" simulados_id="1"/>
 
-    <QUESTAO id="1" texto="Onde se localiza o DNA?" nivel="FACIL" prova_id="1"/>
+    <QUESTAO id="1" referencia="1" texto="Onde se localiza o DNA?" nivel="FACIL" prova_id="1"/>
 </dataset>

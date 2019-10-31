@@ -16,6 +16,10 @@ public class Escolha {
     private Long id;
 
     @NotBlank
+    @Size(min = 1, max = 2)
+    private String referencia;
+
+    @NotBlank
     @Column(unique = true)
     @Size(min = 1, max = 255)
     private String texto;

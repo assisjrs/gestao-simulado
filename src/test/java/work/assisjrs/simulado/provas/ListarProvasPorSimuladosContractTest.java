@@ -42,13 +42,6 @@ public class ListarProvasPorSimuladosContractTest {
     }
 
     @Test
-    public void deve_existir_o_campo_id() {
-        get(url(port,"/simulados/MED-2018-FOR/provas/"))
-                .then()
-                .body("[0]", hasKey("id"));
-    }
-
-    @Test
     public void deve_existir_o_campo_referencia() {
         get(url(port,"/simulados/MED-2018-FOR/provas/"))
                 .then()

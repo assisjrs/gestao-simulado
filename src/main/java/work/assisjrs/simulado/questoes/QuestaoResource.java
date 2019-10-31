@@ -28,11 +28,11 @@ public class QuestaoResource {
 
     @GetMapping
     public ResponseEntity<?> get(@PathVariable final String referenciaSimulado, @PathVariable final String referenciaProva) {
+        final ProvaComQuestoesResponse response = new ProvaComQuestoesResponse();
+        response.setSimulado(referenciaSimulado);
+        response.setProva(referenciaProva);
 
-        final Prova prova = provaService.findBySimuladoAndReferencia(
-                referenciaSimulado, referenciaProva);
-
-        final ProvaComQuestoesResponse response = modelMapper.map(prova, ProvaComQuestoesResponse.class);
+        final Prova prova = provaService.findBySimuladoAndReferencia(referenciaSimulado, referenciaProva);
 
         final List<QuestaoResponse> questoesResponse = modelMapper.map(service.findByProva(prova),
                 new TypeToken<List<QuestaoResponse>>() {}.getType());

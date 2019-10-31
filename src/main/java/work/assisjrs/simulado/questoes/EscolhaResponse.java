@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class EscolhaResponse {
-    private Long id;
+    private String referencia;
     private String texto;
 }

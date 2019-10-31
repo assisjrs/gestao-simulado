@@ -19,6 +19,9 @@ public class Questao {
     @Id
     private Long id;
 
+    @NotNull
+    private Integer referencia;
+
     @NotBlank
     @Column(unique = true)
     @Size(min = 1, max = 255)
