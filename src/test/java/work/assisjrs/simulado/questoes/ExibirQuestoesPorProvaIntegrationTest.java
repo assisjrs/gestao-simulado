@@ -18,9 +18,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, DbUnitTestExecutionListener.class })
 @DatabaseSetups({
         @DatabaseSetup("/datasets/clean_database.xml"),
-        @DatabaseSetup(value = "/datasets/questoes/ExibirQuestoesPorProvaServiceIntegrationTest.xml")
+        @DatabaseSetup(value = "/datasets/questoes/ExibirQuestoesPorProvaIntegrationTest.xml")
 })
-public class ExibirQuestoesPorProvaServiceIntegrationTest {
+public class ExibirQuestoesPorProvaIntegrationTest {
     @Autowired
     private QuestaoService service;
 
