@@ -14,7 +14,7 @@ import static org.springframework.http.HttpStatus.OK;
 import static work.assisjrs.simulado.Helper.url;
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
-class SimuladoApiApplicationTests {
+class SimuladoApplicationTests {
 	@Value("${local.server.port}")
 	private int port = 0;
 
