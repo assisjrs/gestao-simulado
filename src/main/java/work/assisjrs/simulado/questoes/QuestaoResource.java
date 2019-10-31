@@ -37,8 +37,6 @@ public class QuestaoResource {
         final List<QuestaoResponse> questoesResponse = modelMapper.map(service.findByProva(prova),
                 new TypeToken<List<QuestaoResponse>>() {}.getType());
 
-        questoesResponse.forEach(q -> q.addEscolha(new EscolhaResponse()));//
-
         response.setQuestoes(questoesResponse);
 
         return ResponseEntity.ok(response);

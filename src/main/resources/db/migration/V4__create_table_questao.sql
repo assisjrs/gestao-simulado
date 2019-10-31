@@ -1,6 +1,6 @@
 CREATE TABLE QUESTAO (
   id bigint AUTO_INCREMENT PRIMARY KEY NOT NULL,
-  texto varchar(255) NOT NULL,
+  texto varchar(2000) NOT NULL,
   nivel varchar(255) NOT NULL,
   prova_id bigint NOT NULL,
   UNIQUE KEY UK_QUESTAO_texto(texto)
