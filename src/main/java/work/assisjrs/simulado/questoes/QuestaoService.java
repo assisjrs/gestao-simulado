@@ -15,8 +15,17 @@ public class QuestaoService {
     @Autowired
     private QuestaoRepository repository;
 
-    public List<Questao> findByProva(final Prova prova) {
-        return ofNullable(repository.findByProva(prova))
+    public List<Questao> findByProvaFetchEscolhas(final Prova prova) {
+        return ofNullable(repository.findByProvaFetchEscolhas(prova))
                 .orElse(emptyList());
+    }
+
+    public List<Questao> findGabarito(Prova prova) {
+        final List<Questao> questoes = ofNullable(repository.findByProva(prova))
+                .orElse(emptyList());
+
+        questoes.forEach(questao -> questao.setEscolhas(repository.findEscolhasCertas(questao)));
+
+        return questoes;
     }
 }

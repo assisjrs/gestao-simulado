@@ -15,7 +15,7 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class ExibirQuestoesPorProvaServiceUnitTest {
+public class ExibirQuestoesPorProvaUnitTest {
 
     @InjectMocks
     private QuestaoService service;
@@ -29,9 +29,9 @@ public class ExibirQuestoesPorProvaServiceUnitTest {
 
         prova.setId(1L);
 
-        when(repository.findByProva(eq(prova))).thenReturn(null);
+        when(repository.findByProvaFetchEscolhas(eq(prova))).thenReturn(null);
 
-        assertThat(service.findByProva(prova)).isEmpty();
+        assertThat(service.findByProvaFetchEscolhas(prova)).isEmpty();
     }
 
     @Test
@@ -46,8 +46,8 @@ public class ExibirQuestoesPorProvaServiceUnitTest {
 
         questoes.add(questao);
 
-        when(repository.findByProva(eq(prova))).thenReturn(questoes);
+        when(repository.findByProvaFetchEscolhas(eq(prova))).thenReturn(questoes);
 
-        assertThat(service.findByProva(prova)).isNotEmpty();
+        assertThat(service.findByProvaFetchEscolhas(prova)).isNotEmpty();
     }
 }

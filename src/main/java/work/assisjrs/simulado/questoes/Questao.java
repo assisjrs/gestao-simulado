@@ -7,11 +7,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
 import java.util.List;
 
 import static javax.persistence.EnumType.STRING;
-import static javax.persistence.FetchType.EAGER;
 
 @Entity
 @Data
@@ -34,6 +32,6 @@ public class Questao {
     @NotNull
     private Prova prova;
 
-    @OneToMany(mappedBy = "questao", fetch = EAGER)
+    @OneToMany(mappedBy = "questao")
     private List<Escolha> escolhas;
 }

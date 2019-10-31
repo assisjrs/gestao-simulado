@@ -18,9 +18,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, DbUnitTestExecutionListener.class })
 @DatabaseSetups({
         @DatabaseSetup("/datasets/clean_database.xml"),
-        @DatabaseSetup(value = "/datasets/questoes/ExibirQuestoesPorProvaServiceIntegrationTest.xml")
+        @DatabaseSetup(value = "/datasets/questoes/ExibirOGabaritoDaProvaIntegrationTest.xml")
 })
-public class ExibirQuestoesPorProvaServiceIntegrationTest {
+public class ExibirOGabaritoDaProvaIntegrationTest {
     @Autowired
     private QuestaoService service;
 
@@ -29,7 +29,7 @@ public class ExibirQuestoesPorProvaServiceIntegrationTest {
         final Prova prova = new Prova();
         prova.setId(1L);
 
-        final List<Questao> questoes = service.findByProvaFetchEscolhas(prova);
+        final List<Questao> questoes = service.findGabarito(prova);
 
         assertThat(questoes).isNotEmpty();
     }
@@ -39,28 +39,28 @@ public class ExibirQuestoesPorProvaServiceIntegrationTest {
         final Prova prova = new Prova();
         prova.setId(2L);
 
-        final List<Questao> questoes = service.findByProvaFetchEscolhas(prova);
+        final List<Questao> questoes = service.findGabarito(prova);
 
         assertThat(questoes).isEmpty();
     }
 
     @Test
-    public void cada_questao_tem_uma_lista_de_escolhas() {
+    public void cada_questao_so_deve_ter_uma_escolha() {
         final Prova prova = new Prova();
         prova.setId(1L);
 
-        final List<Questao> questoes = service.findByProvaFetchEscolhas(prova);
+        final List<Questao> questoes = service.findGabarito(prova);
 
-        assertThat(questoes.get(0).getEscolhas()).hasSize(4);
+        assertThat(questoes.get(0).getEscolhas()).hasSize(1);
     }
 
     @Test
-    public void nao_deve_duplicar_as_questoes() {
+    public void deve_ter_a_escolha_com_o_flag_certo_como_true() {
         final Prova prova = new Prova();
         prova.setId(1L);
 
-        final List<Questao> questoes = service.findByProvaFetchEscolhas(prova);
+        final List<Questao> questoes = service.findGabarito(prova);
 
-        assertThat(questoes).hasSize(1);
+        assertThat(questoes.get(0).getEscolhas().get(0).getCerto()).isTrue();
     }
 }

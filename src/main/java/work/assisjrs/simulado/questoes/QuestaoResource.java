@@ -34,7 +34,23 @@ public class QuestaoResource {
 
         final Prova prova = provaService.findBySimuladoAndReferencia(referenciaSimulado, referenciaProva);
 
-        final List<QuestaoResponse> questoesResponse = modelMapper.map(service.findByProva(prova),
+        final List<QuestaoResponse> questoesResponse = modelMapper.map(service.findByProvaFetchEscolhas(prova),
+                new TypeToken<List<QuestaoResponse>>() {}.getType());
+
+        response.setQuestoes(questoesResponse);
+
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/gabarito")
+    public ResponseEntity<?> getGabarito(@PathVariable final String referenciaSimulado, @PathVariable final String referenciaProva) {
+        final ProvaComQuestoesResponse response = new ProvaComQuestoesResponse();
+        response.setSimulado(referenciaSimulado);
+        response.setProva(referenciaProva);
+
+        final Prova prova = provaService.findBySimuladoAndReferencia(referenciaSimulado, referenciaProva);
+
+        final List<QuestaoResponse> questoesResponse = modelMapper.map(service.findGabarito(prova),
                 new TypeToken<List<QuestaoResponse>>() {}.getType());
 
         response.setQuestoes(questoesResponse);
