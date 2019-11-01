@@ -25,6 +25,9 @@ public class ProvaResource {
         final List<ProvaResponse> provas = modelMapper.map(service.findBySimulado(referenciaSimulado),
                 new TypeToken<List<ProvaResponse>>() {}.getType());
 
+        if(provas.isEmpty())
+            return ResponseEntity.noContent().build();
+
         provas.forEach(p -> p.setSimulado(referenciaSimulado));
 
         return ResponseEntity.ok(provas);
